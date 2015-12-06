@@ -1,0 +1,5 @@
+#!/bin/bash
+
+while (true); do 
+  vlc -v rtsp://<%= @ip %>/<%= @resolution %>?tcp --sout=file/ts:<%= @data_dir %>/<%= @camera %>/<%= @camera %>-$(date +"%Y%m%d%H%M%S").ts -I dummy --run-time=<%= @cycle_time %> vlc://quit
+done

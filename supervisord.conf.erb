@@ -1,0 +1,58 @@
+[unix_http_server]
+file = <%= @supd_sock %>
+
+[supervisord]
+logfile = <%= @supd_log %>
+logfile_maxbytes = 50MB
+logfile_backups=10
+loglevel = info
+pidfile = <%= @supd_pid %>
+nodaemon = false
+minfds = 1024
+minprocs = 200
+umask = 022
+identifier = supervisor
+directory = <%= @supd_home %>
+nocleanup = true
+childlogdir = <%= @supd_home %>
+strip_ansi = false
+
+[supervisorctl]
+serverurl = unix://<%= @supd_sock %>
+
+<% @cameras.each_pair do | camera, ip | %>
+
+[program:<%= "#{ip}-#{camera}" %>]
+command=<%= @supd_home %>/<%= @supd_prog_prefix %><%= "#{camera}.sh" %>
+process_name=%(program_name)s
+numprocs=1
+directory=<%= @supd_home %>
+umask=022
+priority=999
+autostart=true
+autorestart=unexpected
+startsecs=10
+startretries=3
+exitcodes=0,2
+stopsignal=TERM
+stopwaitsecs=10
+stopasgroup=false
+killasgroup=false
+user=nando
+redirect_stderr=false
+stdout_logfile=<%= "#{camera}" %>.supd.log
+stdout_logfile_maxbytes=1MB
+stdout_logfile_backups=10
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+stderr_logfile=<%= "#{camera}" %>.supd.err
+stderr_logfile_maxbytes=1MB
+stderr_logfile_backups=10
+stderr_capture_maxbytes=1MB
+stderr_events_enabled=false
+serverurl=AUTO
+
+<%end %>
+
+[rpcinterface:supervisor]
+supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
