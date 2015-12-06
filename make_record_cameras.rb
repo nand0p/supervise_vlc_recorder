@@ -13,14 +13,14 @@ supd_sock = "#{supd_home}/supervisord.sock"
 supd_pid = "#{supd_home}/supervisord.pid"
 supd_log = "#{supd_home}/supervisord.log"
 data_dir = "#{supd_home}/data"
-resolution = 4
+resolution = 0
 cycle_time = 3600
 
 cameras = eval(File.open(File.expand_path('load_camera_hash.rb')).read)
-#cameras ||=
-#  Hash[ 'camera-1' => "10.0.0.1",
-#        'camera-2' => "10.0.0.2",
-#        'camera-3' => "10.0.0.3",
+cameras ||=
+  Hash[ 'camera-1' => "10.0.0.1",
+        'camera-2' => "10.0.0.2",
+        'camera-3' => "10.0.0.3"]
 
 class MakeSupdConf
   def initialize(cameras, template, supd_home, supd_prog_prefix, supd_sock, supd_pid, supd_log)
