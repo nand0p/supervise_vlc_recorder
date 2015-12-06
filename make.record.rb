@@ -16,11 +16,11 @@ data_dir = "#{supd_home}/data"
 resolution = 4
 cycle_time = 3600
 
-cameras = 
+cameras = eval(File.open(File.expand_path('load_camera_hash.rb')).read)
+cameras ||=
   Hash[ 'camera-1' => "10.0.0.1",
         'camera-2' => "10.0.0.2",
         'camera-3' => "10.0.0.3",
-        'camera-4' => "10.0.0.4" ]
 
 class MakeSupdConf
   def initialize(cameras, template, supd_home, supd_prog_prefix, supd_sock, supd_pid, supd_log)
