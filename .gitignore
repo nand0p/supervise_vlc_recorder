@@ -4,4 +4,3 @@
 *.pid
 *.err
 data/
-load_camera_hash.rb

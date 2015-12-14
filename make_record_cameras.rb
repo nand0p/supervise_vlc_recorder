@@ -3,7 +3,7 @@
 require 'erb'
 include ERB::Util
 
-supd_home = '/var/backup/cameras'
+supd_home = '/home/lamp/cameras/supervise_vlc_recorder'
 supd_conf_file = 'supervisord.conf'
 supd_conf_template = 'supervisord.conf.erb'
 supd_prog_template = 'supervisord.program.sh.erb'
@@ -13,14 +13,10 @@ supd_sock = "#{supd_home}/supervisord.sock"
 supd_pid = "#{supd_home}/supervisord.pid"
 supd_log = "#{supd_home}/supervisord.log"
 data_dir = "#{supd_home}/data"
+include_camera_hash = 'load_camera_hash.rb'
 resolution = 0
 cycle_time = 3600
-
-cameras = eval(File.open(File.expand_path('load_camera_hash.rb')).read)
-cameras ||=
-  Hash[ 'camera-1' => "10.0.0.1",
-        'camera-2' => "10.0.0.2",
-        'camera-3' => "10.0.0.3"]
+cameras = eval(File.open(File.expand_path(include_camera_hash)).read)
 
 class MakeSupdConf
   def initialize(cameras, template, supd_home, supd_prog_prefix, supd_sock, supd_pid, supd_log)
