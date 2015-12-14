@@ -1,6 +1,8 @@
 # supervise_vlc_recorder
 
-> ruby make_record_cameras.rb
+```
+ruby make_record_cameras.rb
+```
 
 - generates supervisord configuration via erb template
 
