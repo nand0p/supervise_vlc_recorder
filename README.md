@@ -17,4 +17,4 @@ ruby make_record_cameras.rb
   - CAMERA_2_IP
   - [etc]
 
-- symlink `/var/cameras` to this repo dir
+- install in `/var/cameras` or symlink to repo dir
