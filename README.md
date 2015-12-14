@@ -1,8 +1,10 @@
 # supervise_vlc_recorder
 
-- generates supervisord configuration
+> ruby make_record_cameras.rb
 
-- generates vlc camera capture shell wrappers
+- generates supervisord configuration via erb template
+
+- generates vlc camera capture shell wrappers via erb template
 
 - launches supervisord to begin recording camera feeds
 
