@@ -10,9 +10,11 @@ ruby make_record_cameras.rb
 
 - launches supervisord to begin recording camera feeds
 
-- uses environment vars to define cameras
+- use environment vars to define cameras
   - CAMERA_1_NAME
   - CAMERA_1_IP
   - CAMERA_2_NAME
   - CAMERA_2_IP
   - [etc]
+
+- symlink `/var/cameras` to this repo dir
