@@ -3,7 +3,7 @@
 require 'erb'
 include ERB::Util
 
-supd_home = '/var/cameras/supervise_vlc_recorder'
+supd_home = '/var/cameras'
 supd_conf_file = 'supervisord.conf'
 supd_conf_template = 'supervisord.conf.erb'
 supd_prog_template = 'supervisord.program.sh.erb'
